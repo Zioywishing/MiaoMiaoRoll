@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -193,3 +194,200 @@
 		</script>
 	</body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Miao</title>
+		<link rel="stylesheet" href="./staic/default.css" />
+		<link rel="stylesheet" href="./staic/dice.css" />
+		<script src="./staic/lib/jQuery.js"></script>
+		<script src="./staic/lib/vanilla-tilt.js"></script>
+		<script src="./staic/game.js"></script>
+		<script src="./staic/miao.js"></script>
+		<script src="./staic/ai.js"></script>
+	</head>
+
+	<body>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+		<div id="screen">
+
+			<!-- 开始菜单 -->
+			<div class="startPage">
+				<div class="card_startPage">
+					<div class="title_startPageCard">
+						<h1>玩家</h1>
+					</div>
+					<div class="content_startPageCard" id="addPlayerPage">
+						<div id="button_chooseImg" class="button">
+							<div id="button_chooseImg_img"></div>
+							<div id="button_chooseImg_str">
+								<p>更换头像</p>
+							</div>
+						</div>
+						<div id="button_add_ai" class="button">
+							<p>加入AI</p>
+						</div>
+						<div id="button_add_player" class="button">
+							<p>加入玩家</p>
+						</div>
+						<div id="button_remove_player" class="button">
+							<p>删除成员</p>
+						</div>
+						<div id="button_remote" class="button">
+							<p>联机游戏</p>
+						</div>
+					</div>
+				</div>
+				<div class="card_startPage" id="cardPage_ai">
+					<div class="title_startPageCard">
+						<h1>AI难度</h1>
+					</div>
+					<a
+						><div class="ai_select_box ai_select_box1"><p>简单</p></div></a
+					>
+
+					<a
+						><div class="ai_select_box ai_select_box2"><p>中等</p></div></a
+					>
+
+					<a
+						><div class="ai_select_box ai_select_box3"><p>很难</p></div></a
+					>
+
+					<a
+						><div class="ai_select_box ai_select_box4"><p>超难</p></div></a
+					>
+				</div>
+				<div class="card_startPage">
+					<div class="title_startPageCard">
+						<h1>游戏</h1>
+					</div>
+					<div class="content_startPageCard" id="startPage_game_setting">
+						<div id="showPhaseNumber" class="button button0">
+							<p>共进行XX局</p>
+						</div>
+						<div id="addPhaseNumber" class="button button1">
+							<p>增加局数</p>
+						</div>
+						<div id="decreasePhaseNumber" class="button button1">
+							<p>减少局数</p>
+						</div>
+						<div id="showInitMoney" class="button button0">
+							<p>初始筹码:100000</p>
+							<!-- 上限设置999999吧 -->
+						</div>
+						<div id="addInitMoney" class="button button1">
+							<p>增加筹码</p>
+						</div>
+						<div id="decreaseInitMoney" class="button button1">
+							<p>减少筹码</p>
+						</div>
+					</div>
+				</div>
+
+				<div id="startPage_startGame">
+					<p>开始游戏</p>
+				</div>
+
+				<div id="remote_config">
+					<div id="remote_config_exit"><p>完成</p></div>
+				</div>
+				<div id="setting_succeed">
+					<p>设置AI难度成功</p>
+				</div>
+			</div>
+
+			<!-- 游戏界面 -->
+			<div id="mainTable">
+				<!-- #player_list用来放置每个player的头像 -->
+				<div id="controlBar">
+					<!-- 显示当前时间 -->
+					<div id="clock">
+						<p>XX:XX:XX AM</p>
+					</div>
+					<!-- 显示游戏局数 -->
+					<div id="controlBar_gamePhase">
+						<p>当前第XX局</p>
+					</div>
+					<!-- Magnification来自翻译，词汇量不足 -->
+					<div id="player_decreaseMagnification">
+						<p>减少倍率</p>
+					</div>
+					<div id="game_Magnification">
+						<p>当前倍率：0倍</p>
+					</div>
+					<div id="player_increaseMagnification">
+						<p>增加倍率</p>
+					</div>
+					<!-- 显示当前投了几轮 -->
+					<div id="controlBar_gameRound">
+						<p>已投X轮</p>
+					</div>
+					<!-- 废话，已经阉割了 -->
+					<!-- <div id="controlBar_player">
+						<p>托管</p>
+					</div> -->
+				</div>
+
+				<div id="players_list"></div>
+
+				<div id="dropTable">
+					<div class="dropTable_container" id="dropTable0">
+						<div class="dropTable_dice">
+							<!-- <div class="c10"></div> -->
+						</div>
+					</div>
+					<div class="dropTable_container" id="dropTable1">
+						<div class="dropTable_dice">
+							<!-- <div class="c20"></div>
+							<div class="c21"></div> -->
+						</div>
+					</div>
+					<div class="dropTable_container" id="dropTable2">
+						<div class="dropTable_dice">
+							<!-- <div class="c30"></div>
+							<div class="c31"></div>
+							<div class="c32"></div> -->
+						</div>
+					</div>
+					<div class="dropTable_container" id="dropTable3">
+						<div class="dropTable_dice">
+							<!-- <div class="c40"></div>
+							<div class="c41"></div>
+							<div class="c42"></div>
+							<div class="c43"></div> -->
+						</div>
+					</div>
+					<div class="dropTable_container" id="dropTable4">
+						<div class="dropTable_dice">
+							<!-- <div class="c50"></div>
+							<div class="c51"></div>
+							<div class="c52"></div>
+							<div class="c53"></div>
+							<div class="c54"></div> -->
+						</div>
+					</div>
+					<div class="dropTable_container" id="dropTable5">
+						<div id="dropTable_controlDiv" class="dropTable_control">
+							<!-- <div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ai托管幕布 -->
+			<div id="aiCurtain">
+				<p>A I 托 管 中</p>
+			</div>
+		</div>
+		<script>
+			game_init()
+			miao_init()
+		</script>
+	</body>
+</html>
+>>>>>>> master
