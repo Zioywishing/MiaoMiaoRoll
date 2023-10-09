@@ -11,19 +11,19 @@
 第三轮投掷结束后，所有玩家的全部骰子自动锁定并进行计分（得分为五个骰子的点数总和+奖励分），`展示赢家的骰子`，筹码划分。
 ## 奖励分示例
 * 双对 ：10分
-![image](staic\img\e878f9e1e9e243079942dda34a89edaa.jpg)
+![image](staic/img/e878f9e1e9e243079942dda34a89edaa.jpg)
 * 三连 ：10分
-![image](staic\img\36c2520147f44228a0f42d3f9e2a9686.jpg)
+![image](staic/img/36c2520147f44228a0f42d3f9e2a9686.jpg)
 * 葫芦：20分
-![image](staic\img\4c71c6fc94024faf94e684daf435cf69.jpg)
+![image](staic/img/4c71c6fc94024faf94e684daf435cf69.jpg)
 * 四连： 40分
-![image](staic\img\0a5d9e5511b54ddebbe4dcdb319b2a37.jpg)
+![image](staic/img/0a5d9e5511b54ddebbe4dcdb319b2a37.jpg)
 * 五连 ：100分
-![image](staic\img\adc2448e27334f40af2d3ad6cf995d43.jpg)
+![image](staic/img/adc2448e27334f40af2d3ad6cf995d43.jpg)
 * 小顺子：30分
-![image](staic\img\78c19520225648deaec3361db410f76a.jpg)
+![image](staic/img/78c19520225648deaec3361db410f76a.jpg)
 * 大顺子：60分
-![image](staic\img\adde32a72b78421fb735cc47c7c9cef1.jpg)
+![image](staic/img/adde32a72b78421fb735cc47c7c9cef1.jpg)
 ## 结算规则
 
 分数最高的玩家从所有其它玩家手里赢得（二人分差的绝对值）*（总倍率）的筹码。
