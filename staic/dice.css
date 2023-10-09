@@ -1,0 +1,109 @@
+/* author：miao */
+
+.c10{
+    position: absolute;
+}
+
+.c20{
+    position: absolute;
+    left: 25%;
+}
+
+.c21{
+    position: absolute;
+    right: 25%;
+}
+
+.c30{
+    position: absolute;
+    top: 15%;
+    left: 15%;
+}
+
+.c32{
+    position: absolute;
+    bottom: 15%;
+    right: 15%;
+}
+
+.c40{
+    position: absolute;
+    top: 22%;
+    left: 22%;
+}
+
+.c41{
+    position: absolute;
+    top:22%;
+    right: 22%;
+}
+
+.c42{
+    position: absolute;
+    bottom: 22%;
+    left: 22%;
+}
+
+.c43{
+    position: absolute;
+    bottom: 22%;
+    right: 22%;
+}
+
+.c50{
+    position: absolute;
+    top: 19%;
+    left: 19%;
+}
+
+.c51{
+    position: absolute;
+    top:19%;
+    right: 19%;
+}
+
+.c52{
+    position: absolute;
+    bottom: 19%;
+    left: 19%;
+}
+
+.c53{
+    position: absolute;
+    bottom: 19%;
+    right: 19%;
+}
+
+.c60{
+    position: absolute;
+    top:15%;
+    left: 25%;
+}
+
+.c61{
+    position: absolute;
+    left: 25%;
+}
+
+.c62{
+    position: absolute;
+    bottom: 15%;
+    left: 25%;
+}
+
+.c63{
+    position: absolute;
+    top:15%;
+    right: 25%;
+}
+
+.c64{
+    position: absolute;
+    right: 25%;
+}
+
+.c65{
+    position: absolute;
+    bottom: 15%;
+    right: 25%;
+}

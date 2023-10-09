@@ -1,0 +1,22 @@
+{
+  "name": "miao",
+  "version": "1.1",
+  "description": "miaomiaomiao",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "miaoSpring",
+  "license": "ISC",
+  "build": {
+    "appId": "com.vdproject.findxiaoxi",
+    "copyright":"Lin Yuchen",
+    "productName":"小而美",
+    "icon": "icon.png",
+    "win": {
+      "target": [
+        "portable"
+      ]
+    }
+  }
+}

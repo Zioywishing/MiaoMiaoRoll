@@ -1,0 +1,7 @@
+import os
+
+count = 0
+imgs = os.listdir()
+for img in imgs:
+    os.rename(img,'miao'+str(count))
+    count+=1

@@ -1,0 +1,927 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    clear: both;
+    margin: 0;
+}
+
+body {
+    /* background-image:url(img/ol_bg.jpg); */
+    background-color: antiquewhite;
+    /* background-image: url(img/bg_dls.jpg); */
+    background-size: cover;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+* ::-webkit-scrollbar {
+    width: 0px;
+}
+
+@font-face {
+    font-family: Dosis-Regular;
+    src: url(font/Dosis-Regular.ttf);
+}
+
+@font-face {
+    font-family: hanchan;
+    src: url(font/ChillRoundGothic_Normal.ttf);
+}
+
+/* 不好看 */
+@font-face {
+    font-family: spark;
+    src: url(font/YouSheYuFeiTeJianKangTi-2.ttf);
+}
+
+/* 风格不搭 */
+@font-face {
+    font-family: feiYun;
+    src: url(font/YunFengFeiYunTi-2.ttf);
+}
+
+@font-face {
+    font-family: youShe;
+    src: url(font/YSHaoShenTi-2.ttf);
+}
+
+#screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* -------------ai幕布------------- */
+
+#aiCurtain{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+#aiCurtain p{
+    margin-top: 25%;
+    /* font-size: 100px; */
+    font-size: 8rem;
+    font-family: hanchan;
+    text-shadow:0 0 25px rgb(255, 106, 0);
+    color:rgb(255, 255, 255);
+}
+
+/* -------------------------- */
+
+.startPage {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    user-select: none;
+}
+
+
+.startPage .card_startPage {
+    position: relative;
+    /* width: 16%; */
+    height: 60%;
+    aspect-ratio: 9/19;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 7%;
+    border-radius: 15px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    margin-bottom: 30%;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    transition: 1s ease-in-out;
+    
+}
+
+.card_startPage:hover {
+    transform: scale(1.1);
+    /* background-color: radial-gradient(circle at 30% 107%, #1efdc1 0%, #41c8ee 90%); */
+}
+
+.startPage #startPage_startGame{
+    position: absolute;
+    width: 60%;
+    height: 10%;
+    bottom: 5%;
+    right: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.599);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    transition: 0.5s ease-out;
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+}
+
+.startPage #startPage_startGame p {
+    font-family: hanchan;
+    /* font-size: 42px; */
+    font-size: 3rem;
+    letter-spacing:5px;
+    color:#025142;
+}
+.startPage #startPage_startGame:hover{
+    transform: scale(1.1);
+}
+
+.startPage .card_startPage .title_startPageCard {
+    position: absolute;
+    width: 100%;
+    transform: translateY(110%);
+    transition: 1s ease-in-out;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* background-color: aquamarine; */
+}
+
+.startPage .card_startPage .title_startPageCard h1 {
+    font-size: 5rem;
+    font-family: hanchan;
+    font-weight: 400;
+    color:#025142;
+}
+
+.startPage .card_startPage:hover .title_startPageCard {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.startPage .card_startPage .content_startPageCard {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: 1s ease-out;
+    transition-delay: 0.2s;
+}
+
+.startPage .card_startPage:hover .content_startPageCard {
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+#setting_succeed{
+    position: absolute;
+    height: 5%;
+    width: 20%;
+    left: 40%;
+    top: -5%;
+    background-color: rgba(255, 255, 255, 0.17);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    transition: 0.5s ease-out;
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#setting_succeed p{
+    font-family: hanchan;
+    color: #025142;
+    /* font-size: 18px; */
+    font-size: 1.5rem;
+    letter-spacing:5px;
+}
+
+/* ---------添加玩家部分--------- */
+
+
+#addPlayerPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 1s ease-in-out;
+}
+
+#addPlayerPage .button{
+    width: 80%;
+    height: 15%;
+
+    background: rgba(255, 255, 255, 0.252);
+    border-top: 2px solid rgb(255, 255, 255);
+    border-left: 2px solid white;
+    box-shadow: rgba(100, 100, 111, 0.364) -7px 7px 29px 0px;
+
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    transition: 0.4s ease-out;
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+}
+
+#addPlayerPage .button:hover{
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+#addPlayerPage .button p{
+    font-size: 2rem;
+    font-family: hanchan;
+}
+
+#button_chooseImg_img{
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    /* background-color: #00DBDE; */
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    pointer-events: none;
+}
+
+#button_chooseImg_img img {
+    position: absolute;
+    height: 80%;
+    border-radius: 50%;
+    filter: drop-shadow(0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5));
+    /* box-shadow: 3px 3px 1px 1px rgba(0,0,0,0.5); */
+}
+
+#button_chooseImg_str{
+    position: absolute;
+    height: 100%;
+    aspect-ratio: 1;
+    right: 5%;
+    top: 0%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#remote_config{
+    position: absolute;
+    top: 100%;
+    height: 80%;
+    width: 80%;
+    left: 10%;
+    background-color: rgba(185, 232, 221, 0.425);
+    backdrop-filter: blur(40px);
+    border-radius: 15px;
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+    display: flex;
+    justify-content: center;
+}
+
+#remote_config #remote_config_exit{
+    position: absolute;
+    bottom: 10%;
+    height: 10%;
+    width: 35%;
+    left: 32.5%;
+    background-color: rgba(202, 255, 253, 0.796);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#remote_config #remote_config_exit p{
+    font-size: 50px;
+}
+/* .startPage .card_startPage:hover #button_chooseImg {
+    opacity: 0.8;
+    transition-delay: 0.2s;
+}
+.startPage .card_startPage:hover #button_add_ai {
+    opacity: 0.8;
+    transition-delay: 0.4s;
+}
+.startPage .card_startPage:hover #button_add_player {
+    opacity: 0.8;
+    transition-delay: 0.6s;
+}
+.startPage .card_startPage:hover #button_remove_player {
+    opacity: 0.8;
+    transition-delay: 0.7s;
+}
+.startPage .card_startPage:hover #button_remote {
+    opacity: 0.8;
+    transition-delay: 0.8s;
+} */
+
+/* ---------AI强度部分--------- */
+
+#cardPage_AI{
+    background-image: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #ff53d4 60%, #62c2fe 90%);
+}
+
+.ai_select_background {
+    position: absolute;
+    inset: 0;
+    /* background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%); */
+}
+
+.ai_select_box {
+    position: absolute;
+    padding: 10px;
+    text-align: right;
+    background: rgba(255, 255, 255, 0.389);
+    border-top: 2px solid rgb(255, 255, 255);
+    border-left: 1px solid white;
+    border-radius: 10% 13% 42% 0%/10% 12% 75% 0%;
+    box-shadow: rgba(100, 100, 111, 0.364) -7px 7px 29px 0px;
+    transform-origin: bottom left;
+    transition: all 1s ease-in-out;
+}
+
+.ai_select_box p{
+    /* font-size: 20px; */
+    font-size: 1.3rem;
+    margin-top: 4px;
+    margin-right: 4px;
+    font-family: hanchan;
+}
+
+.ai_select_box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+/* .ai_select_box:hover .svg {
+fill: white;
+} */
+
+.ai_select_box1 {
+    width: 70%;
+    height: 70%;
+    bottom: -70%;
+    left: -70%;
+    opacity: 0;
+}
+
+#cardPage_ai:hover .ai_select_box1 {
+    opacity: 1;
+}
+
+.ai_select_box1::before {
+    background-image: linear-gradient(225deg, #85FFBD 0%, #FFFB7D 100%);
+}
+
+.ai_select_box1:hover::before {
+    opacity: 1;
+}
+
+.ai_select_box2 {
+    width: 55%;
+    height: 55%;
+    bottom: -55%;
+    left: -55%;
+    transition-delay: 0.2s;
+    opacity: 0;
+}
+
+#cardPage_ai:hover .ai_select_box2 {
+    opacity: 1;
+}
+
+.ai_select_box2::before {
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+    
+}
+
+.ai_select_box2:hover::before {
+    opacity: 1;
+}
+
+.ai_select_box3 {
+    width: 40%;
+    height: 40%;
+    bottom: -40%;
+    left: -40%;
+    transition-delay: 0.4s;
+    opacity: 0;
+}
+
+#cardPage_ai:hover .ai_select_box3 {
+    opacity: 1;
+}
+
+
+.ai_select_box3::before {
+    background-image: linear-gradient(212deg, #00DBDE 0%, #FC00FF 100%);    
+}
+
+.ai_select_box3:hover::before {
+    opacity: 1;
+}
+
+.ai_select_box4 {
+    width: 25%;
+    height: 25%;
+    bottom: -25%;
+    left: -25%;
+    transition-delay: 0.6s;
+    opacity: 0;
+}
+
+#cardPage_ai:hover .ai_select_box4 {
+    opacity: 1;
+}
+
+.ai_select_box4::before {
+    background-image: linear-gradient(204deg, #35ee9f 0%, #6284FF 50%, #FF0000 100%);
+}
+
+.ai_select_box4:hover::before {
+    opacity: 1;
+}
+
+#cardPage_ai:hover .ai_select_box {
+    bottom: -1px;
+    left: -1px;
+}
+
+/* ----------局内参数部分----------*/
+
+/* #startPage_game_setting{
+    background-color: #00DBDE;
+} */
+
+#startPage_game_setting .button{
+    position: absolute;
+    background: rgba(255, 255, 255, 0.389);
+    border-top: 2px solid rgb(255, 255, 255);
+    border-left: 1px solid white;
+    border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.364) -7px 7px 29px 0px;
+    transition: 0.4s ease-out;
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#startPage_game_setting .button:hover{
+    transform: scale(1.05);
+}
+
+#startPage_game_setting .button p{
+    font-family: hanchan;
+}
+#startPage_game_setting .button1 p{
+    /* font-size: 30px; */
+    font-size: 2rem;
+}
+#startPage_game_setting .button0 p{
+    font-size: 1.5rem;
+}
+
+#showPhaseNumber{
+    top: 5%;
+    height: 13%;
+    width: 80%;
+    left: 10%;
+}
+
+#addPhaseNumber{
+    top: 25%;
+    height: 20%;
+    width: 33%;
+    right: 10%;
+}
+
+#decreasePhaseNumber{
+    top: 25%;
+    height: 20%;
+    width: 33%;
+    left: 10%;
+}
+
+#showInitMoney{
+    top: 55%;
+    height: 13%;
+    width: 80%;
+    left: 10%;
+}
+
+#addInitMoney{
+    top: 75%;
+    height: 20%;
+    width: 33%;
+    right: 10%;
+}
+
+#decreaseInitMoney{
+    top: 75%;
+    height: 20%;
+    width: 33%;
+    left: 10%;
+}
+/* ---------------------- */
+
+#mainTable {
+    position: absolute;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    /* overflow: visible; */
+    user-select: none;
+}
+
+#controlBar {
+    position: absolute;
+    top: 0%;
+    width: 81%;
+    height: 14%;
+    left: 2.5%;
+    top: 1%;
+    border-radius: 15px;
+    background-color: rgba(255, 226, 110, 0.641);
+    overflow: scroll;
+    overflow-y: hidden;
+    backdrop-filter: blur(10px);
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(93, 80, 32, 0.769));
+    display: inline-flex;
+}
+
+#controlBar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+#controlBar div {
+    border-radius: 14px;
+    height: 70%;
+    margin: auto;
+    /* margin-left: 8px;
+    margin-right: 8px; */
+    padding-left: 0.7%;
+    padding-right: 0.7%;
+    background-color: rgba(42, 235, 206, 0.216);
+    color: rgba(50, 63, 15, 0.848);
+    backdrop-filter: blur(10px);
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2rem;
+    font-family: hanchan;
+    font-weight: bolder;
+    user-select: none;
+    transition: all 0.2s ease-out;
+    overflow: hidden;
+}
+
+/* .buttom_circle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle, #d89eeab9 10%, transparent 10.1%);
+    transform: scale(10);
+    opacity: 0;
+}
+.buttom_circle:active::after {
+    transform: scale(0);
+    opacity: .5;
+    transition: 0s;
+} */
+/* #controlBar div p{
+    background-color: rgba(255, 255, 255, 0);
+} */
+
+/* #controlBar #clock{
+    width: 20%;
+} */
+#players_list {
+    position: absolute;
+    width: 12%;
+    height: 98%;
+    background-color: rgba(216, 212, 212, 0.584);
+
+    /* text-align: right; */
+    /* 援交 */
+    /* border-bottom-right-radius:15px;
+    border-bottom-left-radius:15px; */
+    border-radius: 15px;
+    right: 2.5%;
+    top: 1%;
+    display: flex;
+    justify-content: flex-start;
+    overflow: scroll;
+    overflow-x: hidden;
+    backdrop-filter: blur(10px);
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+    /* box-shadow:
+        7px 7px 12px rgba(0, 0, 0, .4),
+        -7px -7px 12px rgba(255, 255, 255, .9); */
+}
+
+#players_list::-webkit-scrollbar {
+    width: 0px;
+}
+
+#dropTable {
+    position: absolute;
+    width: 81%;
+    height: 80%;
+    left: 2.5%;
+    bottom: 1%;
+    background-color: rgba(6, 190, 119, 0.292);
+    overflow: hidden;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.8));
+    /* padding: 1%; */
+    display: flex;
+    align-items: center;
+    justify-items: center;
+
+}
+
+#dropTable .dropTable_container {
+    position: absolute;
+    height: 50%;
+    aspect-ratio: 1;
+    /* margin: 0;
+    padding: 0; */
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    overflow: visible;
+    /* overflow: hidden; */
+    /* background-color: aquamarine; */
+}
+
+#dropTable0 {
+    top: 1%;
+    left: 10%;
+}
+
+#dropTable1 {
+    top: 1%;
+    left: 39.5%;
+}
+
+#dropTable2 {
+    top: 1%;
+    right: 10%;
+}
+
+#dropTable3 {
+    bottom: 1%;
+    left: 10%;
+}
+
+#dropTable4 {
+    bottom: 1%;
+    left: 39.5%;
+}
+
+#dropTable5 {
+    bottom: 1%;
+    right: 10%;
+}
+
+#dropTable .dropTable_dice {
+    position: absolute;
+    height: 80%;
+    aspect-ratio: 1;
+    top: 10%;
+    left: 10%;
+    border-radius: 25px;
+    background-color: rgb(240, 241, 229);
+    transition: filter 0.2s ease-out, transform 0.2s ease-out;
+    filter: drop-shadow(0rem 0rem 0rem rgba(0, 0, 0, 0.0)), grayscale(0%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dropTable .dropTable_dice:hover {
+    transform: scale(1.05);
+}
+
+
+#dropTable .dropTable_dice div {
+    background-color: tomato;
+    border-radius: 50%;
+    height: 15%;
+    aspect-ratio: 1;
+    margin: 0;
+    box-shadow:
+        /* inset -1px -1px 1px rgba(255, 255, 255, .9), */
+        inset 2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+#dropTable .dropTable_control {
+    position: absolute;
+    height: 80%;
+    aspect-ratio: 1;
+    top: 10%;
+    left: 10%;
+    border-radius: 25px;
+    background-color: rgb(240, 241, 229);
+    transition: filter 0.2s ease-out, transform 0.2s ease-out;
+    filter: drop-shadow(0rem 0rem 0rem rgba(0, 0, 0, 0.0)), grayscale(0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#dropTable .dropTable_control div {
+    position: relative;
+    height: 80%;
+    aspect-ratio: 1;
+    /* background-color: aquamarine; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#dropTable .dropTable_control div svg {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+#dropTable .dropTable_control:hover {
+    transform: scale(1.05);
+}
+
+.player_avatar {
+    position: absolute;
+    right: 3.5%;
+    border-radius: 15px;
+    background-color: rgba(128, 128, 128, 0.447);
+    /* background-color:rgba(169, 254, 230, 0.501); */
+    height: 9%;
+    width: 93%;
+    top: 1%;
+    opacity: 1;
+    margin: auto;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    filter: drop-shadow(0.15rem 0.15rem 0.2rem rgba(0, 0, 0, 0.5));
+    transition: background-color 0.2s ease-out;
+    backdrop-filter: blur(5px);
+}
+
+/* .player_avatar:hover{
+    background-color: slategray;
+} */
+.player_avatar img {
+    position: absolute;
+    height: 80%;
+    left: 3.5%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+    /* box-shadow: 3px 3px 1px 1px rgba(0,0,0,0.5); */
+}
+
+/* .player_avatar img:hover{
+    height: 85%;
+} */
+
+.player_avatar .player_scores {
+    position: absolute;
+    height: 40%;
+    width: 60%;
+    top: 7.5%;
+    right: 3%;
+    background-color: rgba(255, 238, 2, 0.424);
+    border-radius: 10px;
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: left;
+}
+
+.player_avatar .player_money {
+    position: absolute;
+    height: 40%;
+    width: 60%;
+    bottom: 7.5%;
+    right: 3%;
+    background-color: rgba(153, 232, 17, 0.415);
+    border-radius: 10px;
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: left;
+}
+
+.player_avatar div p {
+    font-family: Dpsos-Regular;
+    color: rgba(14, 27, 40, 0.89);
+    font-weight: bolder;
+    font-size: 1rem;
+    margin: auto;
+    margin-left: 1%;
+    user-select: none;
+}
+
+.player_avatar .switch_ai {
+    position: absolute;
+    height: 15%;
+    aspect-ratio: 1;
+    top: 72%;
+    left: 28%;
+    border-radius: 50%;
+    background-color: rgb(255, 0, 0);
+    transition: all 0.15s ease-in-out;
+}
+
+.switch_ai:hover {
+    transition: 0.2s ease-out;
+    height: 20%;
+}
+
+/* .player_avatar img:hover{
+    box-shadow: 3px 3px 1px 1px rgba(149, 255, 2, 0.5);clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%, , 50% 50%))
+} */
+.test_buttom {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 100px;
+}
+
+#game_dialog_curtain {
+    background-color: rgba(0, 0, 0, 0.3);
+    /* background-image: url('/img/Title.bmp'); */
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+    backdrop-filter: blur(10px);
+}
+
+#game_dialog {
+    position: absolute;
+    height: 80%;
+    width: 80%;
+    top: 10%;
+    left: 10%;
+    border-radius: 20px;
+    background-color: rgba(0, 255, 174, 0.364);
+    filter: drop-shadow(0.25rem 0.25rem 0.3rem rgba(0, 0, 0, 0.5));
+}
+
+#game_dialog #close_game_dialog {
+    position: absolute;
+    height: 30%;
+    width: 40%;
+    top: 60%;
+    left: 30%;
+    border-radius: 20px;
+    background-color: aqua;
+    user-select: none;
+    /* background-color:whitesmoke; */
+}
