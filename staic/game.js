@@ -526,6 +526,10 @@ game_next = () => {
 		} else {
 			//结束
 			_status.gameRound++;
+			game_rollPlayersUnlockDices();
+			for (var p of _status.players) {
+				p.locked_dices = [];
+			}
 			game_settleChips();
 			game_end();
 		}
