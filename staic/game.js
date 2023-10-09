@@ -516,6 +516,7 @@ game_next = () => {
 					sort_avatar();
 					game_set_active_player(_status.players[0]);
 					_status.status_name2 = "rollDice";
+					_status.magnification = 1;
 					game_rollBegin();
 				}, 4300);
 			} else {
@@ -553,6 +554,35 @@ click_dropTable6 = () => {
 		game_changeMagnification();
 	} else if(_status.status_name2 == 'GameOver'){
 		
+		var p=_status.players;
+		var max=0;
+		var flag=0;
+		for(var i=0;i<p.length;i++){
+			if(p[i].money>max){
+				max=p[i].money;
+				flag=i;
+			}
+		}
+		const updatedData = 
+		[
+			{
+			id: Math.floor(Math.random()*10000).toString(16),
+			avatar: _status.players[flag].avatar_img,
+			score: _status.players[flag].money-_status.setting.initMoney,
+		  },
+		];
+		if (!localStorage.getItem('jsondata')){
+			localStorage.setItem('jsondata', JSON.stringify(updatedData));
+		}
+		else{
+			var dataString =localStorage.getItem('jsondata');
+			var mydata=JSON.parse(dataString);
+			console.log(mydata)
+			var mergedata=updatedData.concat(mydata);
+			localStorage.setItem('jsondata',JSON.stringify(mergedata));
+		}
+		console.log(updatedData)
+		window.open('rank2.html','_self')
 	}
 };
 

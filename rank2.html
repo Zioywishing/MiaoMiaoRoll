@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .leaderboard {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .leaderboard-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .leaderboard-text {
+            text-align: center;
+            font-size: 14px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .rank {
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .score {
+            font-size: 18px;
+        }
+        .return-button {
+            display: block;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 20px auto 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="leaderboard" id="leaderboard">
+        <!-- 添加排行榜标题 -->
+        <h1 class="leaderboard-title">排行榜</h1>
+        <div class="leaderboard-text">分数=结算筹码-初始筹码</div>
+        <!-- 这里将动态添加排名项目 -->
+    </div>
+
+    <!-- 将返回按钮放在排行榜下方并居中显示 -->
+    <div style="text-align: center;">
+        <button class="return-button" id="returnButton">返回</button>
+    </div>
+
+    <script>
+        returnButton.addEventListener("click", () => {
+            localStorage.setItem('jsondata', JSON.stringify(myData));
+            window.history.back(-1);
+            alert("执行返回操作");
+
+        });
+
+         // 从localStorage中检索数据并解析为JavaScript对象
+        var dataString = localStorage.getItem('jsondata');
+        if (dataString) {
+            var myData = JSON.parse(dataString);
+            console.log('Received data from Page 1:', myData);
+        }
+        //初始排行榜
+        const jsonData = [
+            {
+                "id":'1',
+                "avatar": "staic/img/cats/miao2.jpg",
+                "score": 1
+            },
+            {
+                "id":'2',
+                "avatar": "staic/img/cats/miao25.jpg",
+                "score": 2
+            },
+            // 添加更多数据
+        ];
+        var mergeData=jsonData.concat(myData);
+        console.log(mergeData);
+        // 获取排行榜容器
+        const leaderboardContainer = document.getElementById("leaderboard");
+
+        // 排名变量
+        let rank = 0;
+
+        // 排序数据（假设按分数降序排序）
+        mergeData.sort((a, b) => b.score - a.score);
+
+        // 显示前10个排名
+        mergeData.slice(0, 10).forEach((item, index) => {
+            rank++; // 增加排名
+
+            const avatar = item.avatar;
+            const score = item.score;
+
+            // 创建排名项目
+            const leaderboardItem = document.createElement("div");
+            leaderboardItem.classList.add("leaderboard-item");
+            leaderboardItem.innerHTML = `
+                <div class="rank">${rank}.</div>
+                <img class="avatar" src="${avatar}" alt="Avatar ${rank}">
+                <div class="score">${score}</div>
+            `;
+
+            // 添加排名项目到排行榜容器
+            leaderboardContainer.appendChild(leaderboardItem);
+        });
+
+    </script>
+</body>
+</html>
