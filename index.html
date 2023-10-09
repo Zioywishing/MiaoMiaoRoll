@@ -11,6 +11,17 @@
 		<script src="./staic/game.js"></script>
 		<script src="./staic/miao.js"></script>
 		<script src="./staic/ai.js"></script>
+		<style>
+			/* 隐藏音频控制图标 */
+			audio::-webkit-media-controls {
+				display: none !important;
+			}
+	
+			audio::-webkit-media-controls-play-button,
+			audio::-webkit-media-controls-panel {
+				display: none !important;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -190,6 +201,38 @@
 		<script>
 			game_init()
 			miao_init()
+		</script>
+		<audio id="music1" controls>
+			<source src="staic/audio/A HOPE FROM SAD STREET.mp3" type="audio/mpeg">
+		</audio>
+	
+		<!-- 第二首音乐 -->
+		<audio id="music2" controls>
+			<source src="staic/audio/西原健一郎 - Say You Love Me feat. Tamala.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="music3" controls>
+			<source src="staic/audio/好乐团 - 被爱灌溉长大的人.ogg" type="audio/mpeg">
+		</audio>
+		<audio id="music4" controls>
+			<source src="staic/audio/好乐团 - 他们说我是没有用的年轻人.ogg" type="audio/mpeg">
+		</audio>
+		<script>
+			// 获取音乐元素
+			var music1 = document.getElementById("music1");
+			var music2 = document.getElementById("music2");
+			var music3 = document.getElementById("music3");
+			var music4 = document.getElementById("music4");
+			// 创建音乐数组
+			var musicList = [music1, music2,music3,music4];
+	
+			// 随机选择一首音乐
+			var randomIndex = Math.floor(Math.random() * musicList.length);
+			var currentMusic = musicList[randomIndex];
+			var playButton = document.getElementById("startPage_startGame");
+			addEventListener("click", () => {
+				currentMusic.play();
+			});
+			// 播放选定的音乐
 		</script>
 	</body>
 </html>
