@@ -41,4 +41,4 @@ N局游戏后，筹码最多的玩家获胜。
 
 ---
 
-感谢@mingtiao30 提供ai算法并修复超级超级多bug
+感谢@mingtiao30 写了readme，提供ai算法并修复超级超级多bug
