@@ -43,6 +43,7 @@ class Status {
 	setting = {}; //储存像是ai难度，最大局数，初始筹码之类的东西
 	activePlayer = null; //当前回合的玩家
 	playerImg = null; //
+	currentMusic = null;
 }
 
 _status = new Status(); //一切的起点喵
@@ -55,7 +56,7 @@ var _ui = {};
 _ui.add_avatar_stack = 0; //用于解决jquery与vanillaTilt之间的冲突
 _ui.game_hasDialog = false;
 _ui.svg = {}; //储存svg
-_ui.game_log_changeAiSucceed = {stackL:0}
+_ui.game_log_changeAiSucceed = { stackL: 0 };
 
 //dropTable中投掷骰子图标
 _ui.svg.dice =
@@ -135,14 +136,16 @@ game_init = () => {
 	setInterval(screenWH, 1000);
 	setInterval(refrash_controlBar, 10);
 	setInterval(refrash_avatars, 10);
+	setInterval(music_end,1000)
 
 	game_randomImg();
 	refrash_startPage_game_setting();
 	$("#remote_config").hide(1);
+	$("#controlBar_music").css("background-color", "rgba(255, 255, 255, 0.542)");
 
 	$("#button_add_player").click({ is_ai: false, is_local: true, ipAddr: ["7058", "127.0.0.1"] }, add_player),
 	$("#button_add_ai").click({ is_ai: true, is_local: true, ipAddr: ["7058", "127.0.0.1"] }, add_player),
-	$("#button_remove_player").click(remove_avatar); //需要更新
+	$("#button_remove_player").click(remove_avatar);
 	$("#dialog_test_buttom").click(game_addDialog);
 	$("#button_chooseImg").click(game_randomImg);
 	$("#button_remote").click(game_openRemoteSetting);
@@ -155,6 +158,7 @@ game_init = () => {
 	$("#decreaseInitMoney").click(game_decreaseInitMoney);
 	$("#player_increaseMagnification").hover(increaseMagnification_hover);
 	$("#player_increaseMagnification").click(increaseMagnification_click);
+	// $("#player_increaseMagnification").dblclick(increaseMagnification_click);
 	$("#player_increaseMagnification").mouseleave(changeMagnification_mouseleave);
 	$("#player_decreaseMagnification").hover(decreaseMagnification_hover);
 	$("#player_decreaseMagnification").click(decreaseMagnification_click);
@@ -162,6 +166,10 @@ game_init = () => {
 	$(".dropTable_dice").click(dice_click);
 	$(".dropTable_control").click(click_dropTable6);
 	$(".ai_select_box").click(startPage_ai_select);
+	$('#controlBar_music').click(music_switch_pause)
+	$('#controlBar_music').dblclick(music_play)
+	$('#controlBar_music').hover(music_hover)
+	$('#controlBar_music').mouseleave(music_mouseleave)
 };
 
 //初始化选择菜单中的头像
@@ -189,7 +197,7 @@ game_addPhaseNumber = () => {
 };
 
 game_decreasePhaseNumber = () => {
-	if(_status.setting.maxPhase == 1)return;
+	if (_status.setting.maxPhase == 1) return;
 	_status.setting.maxPhase--;
 	refrash_startPage_game_setting();
 };
@@ -235,18 +243,17 @@ game_closeRemotePlaySetting = () => {
 
 //设置ai难度成功弹出一个框框
 game_log_changeAiSucceed = () => {
-	_ui.game_log_changeAiSucceed.stackL++
+	_ui.game_log_changeAiSucceed.stackL++;
 	$("#setting_succeed").css({ "top": "3%" });
 	setTimeout(() => {
 		_ui.game_log_changeAiSucceed.stackL--;
-		if(_ui.game_log_changeAiSucceed.stackL == 0)
-			$("#setting_succeed").css({ "top": "-5%" });
+		if (_ui.game_log_changeAiSucceed.stackL == 0) $("#setting_succeed").css({ "top": "-5%" });
 	}, 1000);
 };
 
 //开始游戏
 game_start = event => {
-	if(_status.status_name2 != 'Start'){
+	if (_status.status_name2 != "Start") {
 		return;
 	}
 	// console.log(event.target.className)
@@ -298,11 +305,11 @@ game_rollBegin = () => {
 		// console.log(i,p.dices[i],p.locked_dices,is_grey,33)
 		ui_changeDice(i, p.dices[i], is_grey);
 	}
-	if(p.is_ai == true){
-		showAiCurtain()
-		setTimeout(ai,1500)
-	}else{
-		hideAiCurtain()
+	if (p.is_ai == true) {
+		showAiCurtain();
+		setTimeout(ai, 1500);
+	} else {
+		hideAiCurtain();
 	}
 	change_dropTable_control_svg(0);
 	setTimeout("_status.status_name = 'wait2roll'", 700);
@@ -378,11 +385,11 @@ game_changeMagnificationBegin = () => {
 		// console.log(i,p.dices[i],p.locked_dices,is_grey,66)
 		ui_changeDice(i, p.dices[i], is_grey);
 	}
-	if(p.is_ai == true){
-		showAiCurtain()
-		setTimeout(ai,1500)
-	}else{
-		hideAiCurtain()
+	if (p.is_ai == true) {
+		showAiCurtain();
+		setTimeout(ai, 1500);
+	} else {
+		hideAiCurtain();
 	}
 	change_dropTable_control_svg(2);
 };
@@ -400,7 +407,7 @@ game_showWinner = () => {
 		// console.log(i,p.dices[i],p.locked_dices,is_grey,66)
 		ui_changeDice(i, p.dices[i], is_grey);
 	}
-	hideAiCurtain()
+	hideAiCurtain();
 	change_dropTable_control_svg(3);
 };
 
@@ -417,7 +424,7 @@ game_showFinalWinner = () => {
 		console.log(i, p.dices[i], p.locked_dices, is_grey, 66);
 		ui_changeDice(i, p.dices[i], is_grey);
 	}
-	hideAiCurtain()
+	hideAiCurtain();
 	change_dropTable_control_svg(4);
 };
 
@@ -445,6 +452,7 @@ game_settleChips = () => {
 			p.money -= m;
 		}
 	}
+	game_qbqs();
 };
 
 //进入game的下一个阶段
@@ -532,6 +540,7 @@ game_next = () => {
 				p.locked_dices = [];
 			}
 			game_settleChips();
+			game_qbqs();
 			game_end();
 		}
 	}
@@ -541,7 +550,7 @@ game_next = () => {
 game_end = () => {
 	sort_players("money");
 	sort_avatar("money");
-	_status.status_name2 = 'GameOver'
+	_status.status_name2 = "GameOver";
 	game_set_active_player(_status.players[0]);
 	game_showFinalWinner();
 };
@@ -552,37 +561,34 @@ click_dropTable6 = () => {
 		game_rollDices();
 	} else if (_status.status_name2 == "changeMagnification") {
 		game_changeMagnification();
-	} else if(_status.status_name2 == 'GameOver'){
-		
-		var p=_status.players;
-		var max=0;
-		var flag=0;
-		for(var i=0;i<p.length;i++){
-			if(p[i].money>max){
-				max=p[i].money;
-				flag=i;
+	} else if (_status.status_name2 == "GameOver") {
+		var p = _status.players;
+		var max = 0;
+		var flag = 0;
+		for (var i = 0; i < p.length; i++) {
+			if (p[i].money > max) {
+				max = p[i].money;
+				flag = i;
 			}
 		}
-		const updatedData = 
-		[
+		const updatedData = [
 			{
-			id: Math.floor(Math.random()*10000).toString(16),
-			avatar: _status.players[flag].avatar_img,
-			score: _status.players[flag].money-_status.setting.initMoney,
-		  },
+				id: Math.floor(Math.random() * 10000).toString(16),
+				avatar: _status.players[flag].avatar_img,
+				score: _status.players[flag].money - _status.setting.initMoney
+			}
 		];
-		if (!localStorage.getItem('jsondata')){
-			localStorage.setItem('jsondata', JSON.stringify(updatedData));
+		if (!localStorage.getItem("jsondata")) {
+			localStorage.setItem("jsondata", JSON.stringify(updatedData));
+		} else {
+			var dataString = localStorage.getItem("jsondata");
+			var mydata = JSON.parse(dataString);
+			console.log(mydata);
+			var mergedata = updatedData.concat(mydata);
+			localStorage.setItem("jsondata", JSON.stringify(mergedata));
 		}
-		else{
-			var dataString =localStorage.getItem('jsondata');
-			var mydata=JSON.parse(dataString);
-			console.log(mydata)
-			var mergedata=updatedData.concat(mydata);
-			localStorage.setItem('jsondata',JSON.stringify(mergedata));
-		}
-		console.log(updatedData)
-		window.open('rank2.html','_self')
+		console.log(updatedData);
+		window.open("rank2.html", "_self");
 	}
 };
 
@@ -701,9 +707,9 @@ remove_avatar = () => {
 	_status.players_length--;
 	_ui.add_avatar_stack++;
 	$(".player_avatar:not(:last-child)").animate({ top: "-=10%" }, 300);
-	p = _status.dom2player($(".player_avatar:last")[0])
+	p = _status.dom2player($(".player_avatar:last")[0]);
 	$(".player_avatar:last").remove();
-	_status.players.splice(_status.players.length - 1,1)
+	_status.players.splice(_status.players.length - 1, 1);
 	setTimeout(() => {
 		_ui.add_avatar_stack--;
 	}, 300 * (_ui.add_avatar_stack + 1));
@@ -812,19 +818,19 @@ game_addDialog = () => {
 //点击头像边上小绿点切换托管状态
 switch_aifc = event => {
 	// console.log($(event.target).css("background-color"));
-	p = _status.dom2player(event.target.parentNode)
+	p = _status.dom2player(event.target.parentNode);
 	if ($(event.target).css("background-color") == "rgb(255, 0, 0)") {
 		//退出托管，表现为绿色
 		$(event.target).css("background-color", "springgreen");
 	} else if ($(event.target).css("background-color") == "rgb(0, 255, 127)") {
 		//开启托管，表现为红色
 		$(event.target).css("background-color", "red");
-		if(_status.activePlayer == p){
-			setTimeout(ai,100)
-			showAiCurtain()
+		if (_status.activePlayer == p) {
+			setTimeout(ai, 100);
+			showAiCurtain();
 		}
 	}
-	p.is_ai = !p.is_ai
+	p.is_ai = !p.is_ai;
 };
 
 //刷新上方UI栏
@@ -1049,14 +1055,85 @@ change_dropTable_control_svg = id => {
 	});
 };
 
-showAiCurtain = () =>{
-	$('#aiCurtain').fadeIn(500)
+showAiCurtain = () => {
+	$("#aiCurtain").fadeIn(500);
+};
+
+hideAiCurtain = () => {
+	$("#aiCurtain").fadeOut(500, () => {
+		$("#aiCurtain").hide();
+	});
+};
+
+//换歌
+music_play = () => {
+	var musicList = [];
+	for (var i = 1; i < 4; ++i) {
+		var d = document.getElementById("music" + i);
+		if (d != _status.currentMusic) {
+			musicList.push(d);
+		}
+	}
+	if (_status.currentMusic) {
+		_status.currentMusic.pause();
+	}
+	// 随机选择一首音乐
+	var randomIndex = Math.floor(Math.random() * musicList.length);
+	_status.currentMusic = musicList[randomIndex];
+	_status.currentMusic.load();
+	_status.currentMusic.play();
+	$('#controlBar_music').css("background-color", "rgba(42, 235, 206, 0.216)");
+};
+
+//切换暂停or播放
+music_switch_pause = () =>{
+	if(!_status.currentMusic)return;
+
+	
+	var d = $('#controlBar_music')[0]
+	if (!_status.currentMusic.paused) {
+		_status.currentMusic.pause();
+		$(d).css("background-color", "rgba(255, 42, 42, 0.342)");
+	}else{
+		_status.currentMusic.play()
+		// $(d).css("background-color", "rgba(162, 240, 114, 0.537)");
+		$(d).css("background-color", "rgba(42, 235, 206, 0.216)");
+	}
 }
 
-hideAiCurtain = () =>{
-	$('#aiCurtain').fadeOut(500,()=>{
-		$('#aiCurtain').hide()
-	})
+//music按钮hover事件
+music_hover = () =>{
+	
+	var d = $('#controlBar_music')[0]
+
+	if (!_status.currentMusic){
+		$(d).css("background-color", "rgba(42, 235, 206, 0.216)");
+	}else if (!_status.currentMusic.paused) {
+		$(d).css("background-color", "rgba(162, 240, 114, 0.537)");
+	} else {
+		$(d).css("background-color", "rgba(255, 102, 102, 0.542)");
+	}
+}
+
+//鼠标移开
+music_mouseleave = () =>{
+	var d = $('#controlBar_music')[0]
+
+	if (!_status.currentMusic){
+		$(d).css("background-color", "rgba(255, 255, 255, 0.542)");
+	}else if (!_status.currentMusic.paused) {
+		$(d).css("background-color", "rgba(42, 235, 206, 0.216)");
+	}else{
+		$(d).css("background-color", "rgba(255, 42, 42, 0.342)");
+	}
+}
+
+//当前音乐结束时处理
+music_end = () => {
+	if(_status.currentMusic && _status.currentMusic.ended == true){
+		_status.currentMusic.load()
+		_status.currentMusic.play()
+	}
 }
 
 //我感觉吧，好像是有那么点问题吧
@@ -1119,7 +1196,7 @@ function calculateScores(nums) {
 		if (i == number + 1) {
 			shunziCount++;
 			number++;
-		} else if (i != number){
+		} else if (i != number) {
 			number = i;
 			shunziCount_max = Math.max(shunziCount_max, shunziCount);
 			shunziCount = 0;
