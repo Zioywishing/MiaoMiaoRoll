@@ -539,7 +539,6 @@ game_next = () => {
 				p.locked_dices = [];
 			}
 			game_settleChips();
-			game_qbqs();
 			game_end();
 		}
 	}
@@ -549,6 +548,7 @@ game_next = () => {
 game_end = () => {
 	sort_players("money");
 	sort_avatar("money");
+	game_qbqs();
 	_status.status_name2 = "GameOver";
 	game_set_active_player(_status.players[0]);
 	game_showFinalWinner();
