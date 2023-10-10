@@ -825,7 +825,7 @@ switch_aifc = event => {
 	} else if ($(event.target).css("background-color") == "rgb(0, 255, 127)") {
 		//开启托管，表现为红色
 		$(event.target).css("background-color", "red");
-		if (_status.activePlayer == p) {
+		if (_status.activePlayer == p && _status.status_name2 != "GameOver" && _status.status_name2 != "showWinner") {
 			setTimeout(ai, 100);
 			showAiCurtain();
 		}
@@ -1068,7 +1068,7 @@ hideAiCurtain = () => {
 //换歌
 music_play = () => {
 	var musicList = [];
-	for (var i = 1; i < 4; ++i) {
+	for (var i = 1; i <= 4; ++i) {
 		var d = document.getElementById("music" + i);
 		if (d != _status.currentMusic) {
 			musicList.push(d);
