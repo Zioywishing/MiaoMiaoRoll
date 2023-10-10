@@ -814,23 +814,31 @@ game_addDialog = () => {
 	$("#game_dialog");
 	$("#game_dialog").append($('<buttom id="close_game_dialog"><p>close dialog</p></buttom>').click(game_removeDialog));
 };
-
+let isProcessing = false;
 //点击头像边上小绿点切换托管状态
 switch_aifc = event => {
+	if (isProcessing) {
+		return; // 如果正在处理点击事件，不执行任何操作
+	}
+	isProcessing = true;
 	// console.log($(event.target).css("background-color"));
 	p = _status.dom2player(event.target.parentNode);
 	if ($(event.target).css("background-color") == "rgb(255, 0, 0)") {
 		//退出托管，表现为绿色
-		$(event.target).css("background-color", "springgreen");
+		p.is_ai = false;
+		$(event.target).css("background-color", "rgb(0, 255, 127)");
 	} else if ($(event.target).css("background-color") == "rgb(0, 255, 127)") {
 		//开启托管，表现为红色
-		$(event.target).css("background-color", "red");
+		p.is_ai = true;
+		$(event.target).css("background-color", "rgb(255, 0, 0)");
 		if (_status.activePlayer == p && _status.status_name2 != "GameOver" && _status.status_name2 != "showWinner") {
 			setTimeout(ai, 100);
 			showAiCurtain();
 		}
 	}
-	p.is_ai = !p.is_ai;
+	
+	console.log(p.is_ai);
+	isProcessing = false;
 };
 
 //刷新上方UI栏
