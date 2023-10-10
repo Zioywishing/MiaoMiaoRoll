@@ -44,6 +44,7 @@ class Status {
 	activePlayer = null; //当前回合的玩家
 	playerImg = null; //
 	currentMusic = null;
+	goodBandCount = 0;
 }
 
 _status = new Status(); //一切的起点喵
@@ -256,8 +257,15 @@ game_start = event => {
 	if (_status.status_name2 != "Start") {
 		return;
 	}
-	// console.log(event.target.className)
-	if (_status.players.length < 1) return;
+	// 彩蛋
+	if (_status.players.length < 1) {
+		_status.goodBandCount++;
+		console.log(_status.goodBandCount)
+		if(_status.goodBandCount == 15){
+			window.location.assign("https://space.bilibili.com/3537113716886263")
+		}
+		return;
+	}
 	close_startPage();
 	_status.status_name2 = "rollDice";
 	_status.gameRound = 1;
