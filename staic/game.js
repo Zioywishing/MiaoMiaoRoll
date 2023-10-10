@@ -814,13 +814,11 @@ game_addDialog = () => {
 	$("#game_dialog");
 	$("#game_dialog").append($('<buttom id="close_game_dialog"><p>close dialog</p></buttom>').click(game_removeDialog));
 };
-let isProcessing = false;
+
+
 //点击头像边上小绿点切换托管状态
 switch_aifc = event => {
-	if (isProcessing) {
-		return; // 如果正在处理点击事件，不执行任何操作
-	}
-	isProcessing = true;
+	
 	// console.log($(event.target).css("background-color"));
 	p = _status.dom2player(event.target.parentNode);
 	if ($(event.target).css("background-color") == "rgb(255, 0, 0)") {
@@ -838,7 +836,6 @@ switch_aifc = event => {
 	}
 	
 	console.log(p.is_ai);
-	isProcessing = false;
 };
 
 //刷新上方UI栏
