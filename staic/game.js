@@ -452,7 +452,6 @@ game_settleChips = () => {
 			p.money -= m;
 		}
 	}
-	game_qbqs();
 };
 
 //进入game的下一个阶段
