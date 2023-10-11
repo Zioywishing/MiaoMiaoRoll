@@ -1,5 +1,5 @@
 // 创建WebSocket连接
-const socket = new WebSocket('ws://your-server-url');
+const socket = new WebSocket('ws://127.0.0.1:8080');
 
 // 处理连接打开时的事件
 socket.addEventListener('open', (event) => {
