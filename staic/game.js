@@ -47,13 +47,13 @@ class Status {
 	goodBandCount = 0;
 }
 
-_status = new Status(); //一切的起点喵
+const _status = new Status(); //一切的起点喵
 _status.setting.aiDifficulty = 1; //默认1档
 _status.setting.maxPhase = 3; //默认3局
 _status.setting.initMoney = 1000; //初始1000元
 
 //存储游戏运行时的变量和函数
-var _ui = {};
+const _ui = {};
 _ui.add_avatar_stack = 0; //用于解决jquery与vanillaTilt之间的冲突
 _ui.game_hasDialog = false;
 _ui.svg = {}; //储存svg
